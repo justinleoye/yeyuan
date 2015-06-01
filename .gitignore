@@ -28,6 +28,5 @@ tmp.*
 
 log/
 env/*.local.sh
-static/files/*
 
 nohup.*
