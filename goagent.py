@@ -28,7 +28,7 @@ def valid_word(word):
 
 def valid_invitation_code(code):
     if valid_word(code):
-        if code in [u'yechangjie',u'yezhangjie',u'wanghanxiao',u'yeyuan']:
+        if code in [u'yechangjie',u'yezhangjie']:
             return True
     return False
 
