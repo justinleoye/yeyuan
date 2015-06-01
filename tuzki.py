@@ -10,6 +10,8 @@ from setting import render
 from account import AcountHandler
 from models import WordsBook
 
+from sqlalchemy import desc,distinct,or_
+
 import json
 import urllib2
 import copy
@@ -28,16 +30,16 @@ def valid_word(word):
 
 
 class TuzkiHandler(AcountHandler):
-    def write_html(self, user = None):
-        return render.tuzki(user = user)
+    def write_html(self, user = None, words= []):
+        return render.tuzki(user = user, words=words)
 
     def GET(self):
         user = self.valid()
         if not user:
             self.redirect('/login')
-        #words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).all()
+        words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).all()
 
-        return self.write_html(user)
+        return self.write_html(user, words)
 
     def POST(self):
         user = self.valid()
