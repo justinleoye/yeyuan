@@ -10,11 +10,19 @@
 
 #### 基础知识
 
-* webpy框架: [新手文档](http://webpy.org/tutorial3.zh-cn)       [webpy Cookbook中文](http://webpy.org/cookbook/index.zh-cn) (以后需要深入了解时再看 later)
-* jinja模板: [Jinja模板设计者文档](http://docs.jinkan.org/docs/jinja2/templates.html)       [Jinja文档](http://docs.jinkan.org/docs/jinja2/) (以后需要深入了解时再看 later)
+* webpy框架: 
+  * [新手文档](http://webpy.org/tutorial3.zh-cn)
+  * [webpy Cookbook中文](http://webpy.org/cookbook/index.zh-cn) (以后需要深入了解时再看 later)
+* jinja模板:
+  * [Jinja模板设计者文档](http://docs.jinkan.org/docs/jinja2/templates.html)
+  * [Jinja文档](http://docs.jinkan.org/docs/jinja2/) (以后需要深入了解时再看 later)
 * pip和PyPI: 分别了解一下即可
-* virtualenv: [virtualenv](http://liuzhijun.iteye.com/blog/1872241) (大概了解一下 later)
-* RESTful: [了解RESTful](http://www.ruanyifeng.com/blog/2011/09/restful.html)       [设计RESTful API](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)      [参考](http://get.jobdeer.com/343.get)
+* virtualenv:
+  * [virtualenv](http://liuzhijun.iteye.com/blog/1872241) (大概了解一下 later)
+* RESTful:
+  * [了解RESTful](http://www.ruanyifeng.com/blog/2011/09/restful.html)
+  * [设计RESTful API](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
+  * [参考](http://get.jobdeer.com/343.get)
 
 #### Targets
 
