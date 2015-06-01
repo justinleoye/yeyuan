@@ -23,6 +23,8 @@
   * [了解RESTful](http://www.ruanyifeng.com/blog/2011/09/restful.html)
   * [设计RESTful API](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)
   * [参考](http://get.jobdeer.com/343.get)
+* sqlalchemy:
+  * [官方文档](http://docs.sqlalchemy.org/en/rel_1_0/)
 
 #### Targets
 
@@ -33,6 +35,7 @@
 2. 了解web开发的基本流程
   * web框架
   * 模板
+  * ORM: sqlalchemy
   * 请求和响应的全过程
   * RESTful API
 3. 学会服务器的搭建和配置(later)
