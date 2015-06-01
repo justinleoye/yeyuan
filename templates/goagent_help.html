@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+{% set page_title="GoAgent" %}
+{% set active_page="goagent" %}
+{% block content %}
+<div class="container content">
+    <div class="row">
+        <div class="span10 offset1">
+            <h4>入门级：</h4>
+            <p class="lead">按照：步骤2  -> 步骤3 </p>
+            <h4>高级：</h4>
+            <p class="lead">按照：步骤1 -> 步骤2</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="span10 offset1">
+            <h4>步骤1.安装chrome浏览器和Switchy Sharp插件</h4>
+            <hr>
+            <!-- Carousel
+            ================================================== -->
+            <div id="step-one-Carousel" class="carousel slide">
+              <div class="carousel-inner">
+                {% set carousel_sets =[
+                    ("../static/assets/img/goagent/1-chrome-install.png","1-下载并安装chrome浏览器","你可以在软件管家中搜索chrome浏览器进行安装（不是很推荐这样做）。或者通过搜索引擎搜索chrome浏览器，在chrome官方下载进行安装。"),
+                    ("../static/assets/img/goagent/2-download-chrome-fail.png","2-如果下载不到chrome，或者安装出问题","如果下载不到chrome，或者安装出问题，你可以下载安装本轮播图下面提供的下载链接下载并安装chrome浏览器。"),
+                    ("../static/assets/img/goagent/3-switchysharp-download.png","3-下载Switchy Sharp插件","在轮播图的下方下载Switchy Sharp插件"),
+                    ("../static/assets/img/goagent/4-chrome-menu.png","4-打开chrome拓展程序页面(安装插件)","单击chrome菜单图标，在菜单中选择工具〉扩展程序，这会打开扩展管理的页面"),
+                    ("../static/assets/img/goagent/5-extensions.png","5-进入拓展程序页面(安装插件)",""),
+                    ("../static/assets/img/goagent/6-drag-for-install.png","6-安装应用(安装插件)","找到下载的.crx程序，将文件拖放到 拓展程序页面 进行安装"),
+                    ("../static/assets/img/goagent/7-choose-install.png","7-确认安装(安装插件)","选择确认对话框的 添加 按钮，确认安装"),
+                    ("../static/assets/img/goagent/8-installed.png","8-安装成功(安装插件)","安装成功后，浏览器右上方会出现插件的小图标，拓展程序页面会出现程序的管理信息和选项。"),
+                    ("../static/assets/img/goagent/9-download-switchysharp-settings.png","9-下载Switchy Sharp配置文件","在轮播图的下方下载Switchy Sharp配置文件"),
+                    ("../static/assets/img/goagent/10-open-options.png","10-单击Switchy Sharp插件管理页的 选项","单击如图所示的 选项，进入Switchy Sharp的管理页面。"),
+                    ("../static/assets/img/goagent/11-open-io-tab.png","11-单击 导入/导出",""),
+                    ("../static/assets/img/goagent/12-recover-options.png","12-单击 从文件导入","单击 从文件导入,并且选择你刚才下载的Switchy Sharp配置文件"),
+                    ("../static/assets/img/goagent/13-recover-confirm.png","13-单击 确定",""),
+                    ("../static/assets/img/goagent/14-open-rules-tab.png","14-单击 切换规则",""),
+                    ("../static/assets/img/goagent/15-save-settings.png","15-滚动到页面最下面，单击 保存",""),
+                    ("../static/assets/img/goagent/16-click-ss-done.png","16-单击 SwitchySharp图标 到如图所示的状态","")
+                    ] -%}
+
+                {% for src,h1,p in carousel_sets %}
+                <div {% if loop.index0 == 0 %}class="item active"{% else %}class="item"{% endif %}>
+                  <img src="{{ src }}" alt="">
+                  <div class="container">
+                    <div class="carousel-caption">
+                      <h1>{{ h1 }}</h1>
+                      <p class="lead">{{ p }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <a class="left carousel-control" href="#step-one-Carousel" data-slide="prev">&lsaquo;</a>
+              <a class="right carousel-control" href="#step-one-Carousel" data-slide="next">&rsaquo;</a>
+            </div><!-- /.carousel -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+            <!-- download section -->
+            <h5>下载chrome浏览器</h5>
+            <hr>
+            <div class="download-section">
+                <img src="../static/icon/appicns_chrome.png">
+                <a class="btn btn-primary" href="http://pan.baidu.com/s/1ntNY8FR" target="_blank">下载 chrome浏览器</a>
+            </div>
+            
+            <h5>下载Switchy Sharp插件</h5>
+            <hr>
+            <div class="download-section">
+                <img src="../static/icon/switchysharp.png">
+                <a class="btn btn-primary" href="../static/files/goagent/SwitchySharp-0.9-beta-r48.crx">下载 Switchy Sharp插件(0.9-beta)</a>
+            </div>
+
+            <h5>下载Switchy Sharp配置文件</h5>
+            <hr>
+            <div class="download-section">
+                <img src="../static/icon/file-icon48.png">
+                <a class="btn btn-primary" href="../static/files/goagent/SwitchyOptions.bak">下载 Switchy Sharp配置文件</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span10 offset1">
+            <h4>步骤2.下载Goagent客户端，并运行客户端程序</h4>
+            <hr>
+            <!-- Carousel
+            ================================================== -->
+            <div id="step-two-Carousel" class="carousel slide">
+              <div class="carousel-inner">
+                {% set carousel_sets =[
+                    ("../static/assets/img/goagent/download-goagent.png","1-下载Goagent客户端","下载轮播图下面的Goagent客户端"),
+                    ("../static/assets/img/goagent/goagent-exe.png","2-运行Goagent客户端","将下载的Goagent客户端文件解压到你的任意文件夹下，进入解压后的文件夹，找到并进入local文件夹，单击如图所示的图标文件"),
+                    ("../static/assets/img/goagent/goagent-running.png","3-显示如图所示的黑框，则表示运行成功","显示如图黑框，则表示一切都搞定了！现在进入你的Chrome浏览器随便上网就可以了！")] -%}
+
+                {% for src,h1,p in carousel_sets %}
+                <div {% if loop.index0 == 0 %}class="item active"{% else %}class="item"{% endif %}>
+                  <img src="{{ src }}" alt="">
+                  <div class="container">
+                    <div class="carousel-caption">
+                      <h1>{{ h1 }}</h1>
+                      <p class="lead">{{ p }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <a class="left carousel-control" href="#step-two-Carousel" data-slide="prev">&lsaquo;</a>
+              <a class="right carousel-control" href="#step-two-Carousel" data-slide="next">&rsaquo;</a>
+            </div><!-- /.carousel -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+
+            <!-- download section -->
+            <h5>下载Goagent客户端</h5>
+            <hr>
+            <div class="download-section">
+                <img src="../static/icon/goagent-icon48.png">
+                <a class="btn btn-primary" href="../static/files/goagent/Goagent.zip">下载 Goagent客户端</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span10 offset1">
+            <h4>步骤3.设置上网代理</h4>
+            <hr>
+            <!-- Carousel
+            ================================================== -->
+            <div id="step-three-Carousel" class="carousel slide">
+              <div class="carousel-inner">
+                {% set carousel_sets =[
+                    ("../static/assets/img/goagent/t1-click-hidedden-window.png","1-单击隐藏小窗口",""),
+                    ("../static/assets/img/goagent/t2-right-click.png","2-找到Goagent小图标，单击鼠标右键",""),
+                    ("../static/assets/img/goagent/t3-select-ie-proxy.png","3-选择设置IE代理",""),
+                    ("../static/assets/img/goagent/t3-select-ie-proxy.png","4-选择第二项或第三项","")
+                ] -%}
+
+                {% for src,h1,p in carousel_sets %}
+                <div {% if loop.index0 == 0 %}class="item active"{% else %}class="item"{% endif %}>
+                  <img src="{{ src }}" alt="">
+                  <div class="container">
+                    <div class="carousel-caption">
+                      <h1>{{ h1 }}</h1>
+                      <p class="lead">{{ p }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <a class="left carousel-control" href="#step-three-Carousel" data-slide="prev">&lsaquo;</a>
+              <a class="right carousel-control" href="#step-three-Carousel" data-slide="next">&rsaquo;</a>
+            </div><!-- /.carousel -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span10 offset1">
+            <h4>处理意外问题（如果你第二部分完成后，还出现问题）</h4>
+            <hr>
+            <!-- Carousel
+            ================================================== -->
+            <div id="step-accident-Carousel" class="carousel slide">
+              <div class="carousel-inner">
+                {% set carousel_sets =[
+                    ("../static/assets/img/goagent/f1-chrome-menu.png","1-打开chrome设置页面","单击chrome菜单图标，在菜单中选择 设置，这会打开chrome的设置页面"),
+                    ("../static/assets/img/goagent/f2-show-advanced.png","2-单击 显示高级设置","滚动到最下面，选择 显示高级设置"),
+                    ("../static/assets/img/goagent/f3-https-ssl.png","3-单击 管理证书",""),
+                    ("../static/assets/img/goagent/f4-select-cart-center.png","4-在弹出框中单击 授权中心",""),
+                    ("../static/assets/img/goagent/f5-click-import.png","5-单击 导入","单击导入后，选择之前解压的Goagent文件夹下的local文件夹下的 CA.crt 文件"),
+                    ("../static/assets/img/goagent/f6-show-import-selections.png","6-导入后，显示如图所示窗口",""),
+                    ("../static/assets/img/goagent/f7-select-all-and-makesure.png","7-将如图选项 全部勾选，并单击 确认",""),
+                    ("../static/assets/img/goagent/f8-click-finished.png","8-单击完成","进入浏览器重新输入网址，应该就解决了你的问题")
+                ] -%}
+
+                {% for src,h1,p in carousel_sets %}
+                <div {% if loop.index0 == 0 %}class="item active"{% else %}class="item"{% endif %}>
+                  <img src="{{ src }}" alt="">
+                  <div class="container">
+                    <div class="carousel-caption">
+                      <h1>{{ h1 }}</h1>
+                      <p class="lead">{{ p }}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <a class="left carousel-control" href="#step-accident-Carousel" data-slide="prev">&lsaquo;</a>
+              <a class="right carousel-control" href="#step-accident-Carousel" data-slide="next">&rsaquo;</a>
+            </div><!-- /.carousel -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="span10 offset1">
+          <h4>特 性</h4>
+          <hr>
+          <!-- Three columns of text below the carousel -->
+          <div class="marketing">
+              <div class="row-fluid">
+                <div class="span3">
+                  <img class="img-circle" src="../static/assets/img/goagent/performance.png">
+                  <h2>关于性能</h2>
+                  <p>目前你下载的Goagent有三个远端应用程序支持，如果发现性能不够，可以告诉我，再加更多远端应用程序来提高性能。</p>
+
+                </div><!-- /.span4 -->
+                <div class="span3">
+                  <img class="img-circle" src="../static/assets/img/goagent/statistic.png">
+                  <h2>关于流量</h2>
+                  <p>如上，因为远端只有三个应用程序支持，每个应用每天的流量是1G，所以理论上每天最多使用3G流量。不够请联系我。</p>
+
+                </div><!-- /.span4 -->
+                <div class="span3">
+                  <img class="img-circle" src="../static/assets/img/goagent/firewall.png">
+                  <h2>关于防火墙</h2>
+                  <p>这个国家防火墙的确阻碍了我们的生活、学习和工作。但有时它也有存在的必要！不过我还是不喜欢它。</p>
+
+                </div><!-- /.span4 -->
+                <div class="span3">
+                  <img class="img-circle" src="../static/assets/img/goagent/world.png">
+                  <h2>关于世界</h2>
+                  <p>Goagent让我们更好的与外面的世界沟通，让我们的观察、思考更加自由。希望你也可以受益！</p>
+
+                </div><!-- /.span4 -->
+              </div><!-- /.row -->
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+{% block javascript %}
+<script type="text/javascript">
+    $('.carousel').carousel({
+        interval: 2000
+    });
+</script>
+{% endblock javascript %}

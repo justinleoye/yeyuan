@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% set page_title="主页" %}
+{% set active_page="home" %}
+{% block content %}
+<div class="container content">
+    <div class="row">
+        <div class="span8 offset1">
+            
+            <div class="mybox">
+                <img class="img-responsive" src="../static/img/xingkong.jpg">
+            </div>
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+        </div>
+        <div class="span2">
+            <div class="row">
+                <div class="span12">
+                    <a class="btn btn-info link-nav" href="/tuzki_help">兔斯基 <i class="icon-circle-arrow-right  icon-white"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <a class="btn btn-info link-nav" href="/goagent">GoAgent <i class="icon-circle-arrow-right  icon-white"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}
+{% block javascript %}
+<script type="text/javascript">
+    $('.carousel').carousel({
+        interval: 2000
+    });
+</script>
+{% endblock javascript %}

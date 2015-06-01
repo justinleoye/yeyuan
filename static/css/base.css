@@ -1,0 +1,157 @@
+/* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+
+    body {
+      padding-bottom: 40px;
+      min-height: 400px;
+      color: #5a5a5a;
+    }
+
+/* CUSTOMIZE THE NAVBAR
+    -------------------------------------------------- */
+
+    /* Special class on .container surrounding .navbar, used for positioning it into place. */
+    .navbar-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      margin-top: 20px;
+      margin-bottom: -90px; /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+    }
+    .navbar-wrapper .navbar {
+
+    }
+
+    /* Remove border and change up box shadow for more contrast */
+    .navbar .navbar-inner {
+      border: 0;
+      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
+              box-shadow: 0 2px 10px rgba(0,0,0,.25);
+    }
+
+    /* Downsize the brand/project name a bit */
+    .navbar .brand {
+      vertical-align:middle; /* Increase vertical padding to match navbar links */
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
+      padding:5px 0px 5px 20px!important;
+      }
+
+    /* Navbar links: increase padding for taller navbar */
+    .navbar .nav > li > a {
+      padding: 15px 20px!important;
+    }
+    
+    /* Offset the responsive button for proper vertical alignment */
+    .navbar .btn-navbar {
+      margin-top: 10px;
+    }
+
+
+/*the content */
+    .content {
+      margin-top:90px;
+    }
+
+/* CUSTOMIZE THE CAROUSEL
+    -------------------------------------------------- */
+
+    /* Carousel base class */
+    .carousel {
+      margin-bottom: 60px;
+    }
+
+    .carousel-control {
+      z-index: 10;
+    }
+
+    .carousel-caption {
+      padding: 0 20px 20px 20px;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 10px 10px 10px 0;
+      line-height: 1.25;
+      color: #fff;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+
+/* download-section
+ * --------------------------------------------------- */
+    .download-section {
+      margin-bottom:60px;
+    }
+
+/* MARKETING CONTENT
+    -------------------------------------------------- */
+
+    /* Center align the text within the three columns below the carousel */
+    .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .marketing img {
+      width:140px;
+      height:140px;
+    }
+
+/*this is mybox by justin*/
+      .mybox {
+          background-color:white;
+          display:block;
+          margin:10px;
+          padding:10px;
+          border-radius: 10px;
+          -webkit-border-radius:10px;
+          -moz-border-radius:10px;
+          -khtml-border-radius: 10px;
+      
+          box-shadow:2px 2px 20px #528B8B;
+          -webkit-box-shadow:2px 2px 20px #528B8B;
+          -moz-box-shadow:2px 2px 20px #528B8B;
+          -khtml-box-shadow:2px 2px 20px #528B8B;
+      }
+
+/* link-nav */
+.link-nav {
+    width: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+      /* Set the fixed height of the footer here */
+      #footer {
+        height: 60px;
+      }
+    
+/* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+    @media (max-width: 979px) {
+
+      .container.navbar-wrapper {
+        margin-bottom: 0;
+        width: auto;
+      }
+      .navbar-inner {
+        border-radius: 0;
+        margin: -20px 0;
+      }
+
+
+    @media (max-width: 767px) {
+
+      .navbar-inner {
+        margin: -20px;
+      }

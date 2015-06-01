@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% set page_title="验证邀请" %}
+{% set active_page="" %}
+{% block content %}
+<div class="container content">
+    <div class="row">
+        <div class="span10 offset1">
+            <h4>邀请验证</h4>
+            <hr class="featurette-divider">
+            <form class="form-horizontal" method="post">
+                {% if invitation_error =='' %}
+                <div class="control-group">
+                    <label class="control-label" for="inputInvitation">邀请码/Invitation code</label>
+                    <div class="controls">
+                        <input type="text" name="invitation" value="{{username}}" id="inputInvitation" placeholder="Invitation Code">
+                        <span class="help-inline">如果你被邀请了，请输入你名字的全拼。如 小明 则输入“xiaoming”</span>
+                    </div>
+                </div>
+                {% else %}
+                <div class="control-group error">
+                    <label class="control-label" for="inputInvitation">邀请码/Invitation code</label>
+                    <div class="controls">
+                        <input type="text" name="invitation" value="{{username}}" id="inputInvitation" placeholder="Invitation Code">
+                        <span class="help-inline">{{invitation_error}}</span>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary">验证</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}
+{% block javascript %}
+<script type="text/javascript">
+    $('.carousel').carousel({
+        interval: 2000
+    });
+</script>
+{% endblock javascript %}

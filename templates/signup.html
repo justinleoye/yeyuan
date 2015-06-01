@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% set page_title="Signup" %}
+{% set active_page="" %}
+{% block content %}
+<div class="container-fluid content">
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <h4>注册帐号</h4>
+            <hr class="featurette-divider">
+            <form class="form-horizontal" method="post">
+                {% if username_error =='' %}
+                <div class="control-group">
+                    <label class="control-label" for="inputUsername">Username</label>
+                    <div class="controls">
+                        <input type="text" name="username" value="{{username}}" id="inputUsername" placeholder="Username">
+                        <span class="help-inline">用户名是3到20个英文字符、数字或者“-”</span>
+                    </div>
+                </div>
+                {% else %}
+                <div class="control-group error">
+                    <label class="control-label" for="inputUsername">Username</label>
+                    <div class="controls">
+                        <input type="text" name="username" value="{{username}}" id="inputUsername" placeholder="Username">
+                        <span class="help-inline">{{username_error}}</span>
+                    </div>
+                </div>
+                {% endif %}
+        
+                {% if password_error =='' %}
+                <div class="control-group">
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <div class="controls">
+                        <input type="password" name="password" id="inputPassword" placeholder="Password">
+                        <span class="help-inline">至少3个字符，最多20个字符，区分大小写</span>
+                    </div>
+                </div>
+                {% else %}
+                <div class="control-group error">
+                    <label class="control-label" for="inputPassword">Password</label>
+                    <div class="controls">
+                        <input type="password" name="password" id="inputPassword" placeholder="Password">
+                        <span class="help-inline">{{password_error}}</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% if v_password_error =='' %}
+                <div class="control-group">
+                    <label class="control-label" for="inputVerifyPassword">Verify Password</label>
+                    <div class="controls">
+                        <input type="password" name="verify" id="inputVerifyPassword" placeholder="Verify Password">
+                    </div>
+                </div>
+                {% else %}
+                <div class="control-group error">
+                    <label class="control-label" for="inputVerifyPassword">Verify Password</label>
+                    <div class="controls">
+                        <input type="password" name="verify" id="inputVerifyPassword" placeholder="Verify Password">
+                        <span class="help-inline">{{v_password_error}}</span>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="control-group">
+                    <div class="controls">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <span class="help-inline text-right">I already have an acount. <a href="/login">Login Now</a></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

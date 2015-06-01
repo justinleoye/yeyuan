@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% set page_title="Profile" %}
+{% block content %}
+<div class="container-fluid content">
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <h4>帐号基本信息</h4>
+            <hr class="featurette-divider">
+            <div class="span12">
+                <div class="span3 offset9">
+                    <div class="span6">
+                        <a href="/editprofile"><button class="btn btn-warning">编辑资料</button></a>
+                    </div>
+                    <div class="span6">
+                        <a href="/delacount"><button class="btn btn-danger">注销帐户</button></a>
+                    </div>
+                </div>
+            </div>
+            <div class="span10"><i class="icon-user"></i><span class="label label-info">用户名:{{ user.username }}</span></div>
+            <div class="span10"><i class="icon-envelope"></i><span class="label label-info">Email:{% if user.email != None %} {{ user.email }} {% else %} {{ "你还没有填写Email" }} {% endif %}</span></div>
+            <div class="span10"><i class="icon-globe"></i><span class="label label-info">QQ号:{% if user.qq != None %}{{ user.qq }} {% else %} {{ "你还没有填写QQ" }} {% endif %}</span></div>
+        </div>
+    </div>
+</div><!--container-fluid-->
+{% endblock content %}

@@ -1,0 +1,28 @@
+/* hovering-win */
+.hovering-win {
+    background-color: #5a5a5a;
+    background-color:white;
+    max-width: 320px;
+    display:block;
+    padding:10px;
+    text-align: left;
+    color: #5a5a5a;
+    border-radius: 10px;
+    -webkit-border-radius:10px;
+    box-shadow:2px 2px 20px #528B8B;
+    -webkit-box-shadow:2px 2px 20px #528B8B;
+}
+
+.hovering-win h4,.hovering-win h5 {
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 20px;
+    color: inherit;
+    text-rendering: optimizelegibility;
+}
+
+.hovering-win div {
+    color: inherit;
+}
+
