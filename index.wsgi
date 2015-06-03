@@ -36,7 +36,8 @@ urls = (
     '/welcome','WelcomeHandler',
     '/profile','ProfileHandler',
     '/editprofile','EditProfileHandler',
-    '/delacount','DelAcountHandler'
+    '/delacount','DelAcountHandler',
+	'/test','TestHandler'
 )
 
 
@@ -119,6 +120,14 @@ class HelpHandler(AcountHandler):
 
         return self.write_html(user)
 
+class TestHandler(AcountHandler):
+	def write_html(self,user = None):
+		return render.test(user=user)
+
+	def GET(self):
+		user = self.valid()
+
+		return self.write_html(user)
 
 #class Referer:
     #def GET(self):
