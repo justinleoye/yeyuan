@@ -10,7 +10,7 @@ from setting import render
 from account import AcountHandler
 from models import WordsBook
 
-from sqlalchemy import desc,distinct,or_
+from sqlalchemy import desc,distinct,or_,func
 
 import json
 import urllib2
@@ -28,18 +28,37 @@ def valid_word(word):
         return True
     return False
 
+def get_pageval(page):
+    return (int(page)-1)*15
 
 class TuzkiHandler(AcountHandler):
-    def write_html(self, user = None, words= []):
-        return render.tuzki(user = user, words=words)
+    def write_html(self, user = None, words= [],words_count = None, pager=None):
+        return render.tuzki(user = user, words=words,words_count = words_count, pager=pager)
 
-    def GET(self):
+    def GET(self,page):
         user = self.valid()
         if not user:
             self.redirect('/login')
-        words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).all()
+        #words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).offerset((page-1)*15).limit(15).all()
+        pageval = get_pageval(page);
+        per_page_count = 15
 
-        return self.write_html(user, words)
+        def has_prev_page(curr_page, words_count, per_page_count):
+            return False
+
+        def has_next_page(curr_page, words_count, per_page_count):
+            return True
+
+        words_count = web.ctx.orm.query(func.count('*')).filter(WordsBook.userid == user.userid).scalar()
+        
+        words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).limit(per_page_count).offset(pageval).all()
+
+        pager = {
+            'current_page': page,
+            'has_prev_page': has_prev_page(page, words_count, per_page_count),
+            'has_next_page': has_next_page(page, words_count, per_page_count)
+        }
+        return self.write_html(user, words,words_count,pager)
 
     def POST(self):
         user = self.valid()
@@ -74,6 +93,20 @@ class TuzkiDetailHandler(AcountHandler):
     def GET(self):
         user=self.valid()
         return self.write_html(user)
+
+class TuzkiDeleteWordHandle(AcountHandler):
+    def write_html(self,user =None):
+        return render.tuzki_delete(user = user)
+    def GET(self):
+        user = self.valid()
+        if not user:
+            self.redirect('/login')
+
+        word = "a"
+        deleteWord =  web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).filter(WordsBook.word == word).first()
+        web.ctx.orm.delete(deleteWord)
+        return self.write_html(user)
+        
 
 class TuzkiGetAcountStateHandler(AcountHandler):
     def GET(self):
