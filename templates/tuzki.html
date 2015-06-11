@@ -9,23 +9,25 @@
             <h4><span class="label label-important">Coming soon! =^_^=</span></h4>-->
             <div class="span8">
 	    <div class="row">
-	        {{words_count}}
+	        <p>wordsCount:{{words_count}}</p>
+	
+	
 	    </div>
 	</div>
             {% for word in words %}
                 <div class="span8">
 	    <div class="row">
-	     
+	     <p>
 	        	{{ word.word }}
 	        	&nbsp
 	        	{{word.date}}
 	                <a href="/tuzki_delete"><button type="submit" class="btn btn-warning"><i class="icon-remove icon-white"></i></button></a>
-	    
+	    </p>
 	    </div>
 	</div>
             {% endfor %}
             {% if pager != None %}
-            <div class="span8">
+            <div class="span10">
 	    <div class="row">
 	    	{% if pager.has_prev_page %}
 	                <a href="/tuzki_page/{{ (pager.current_page | int) -1 }}"><button type="submit" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>pre</button></a>
@@ -33,6 +35,10 @@
 	                {% if pager.has_next_page %}
 	    	<a href="/tuzki_page/{{ (pager.current_page | int) +1 }}"><button type="submit" class="btn btn-primary"><i class="icon-arrow-right icon-white"></i>next</button></a>
 	    	{% endif %}
+
+	    	<p>page:{{pager.current_page}}</p>
+	    	<p>all_page:{{pager.all_page}}</p>
+	        
 	    </div>
             </div>
             {% endif %}
@@ -42,6 +48,8 @@
 {% endblock content %}
 {% block javascript %}
 <script type="text/javascript">
+$(document).ready(function(){
 
+})
 </script>
 {% endblock javascript %}

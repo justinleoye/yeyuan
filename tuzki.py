@@ -28,8 +28,8 @@ def valid_word(word):
         return True
     return False
 
-def get_pageval(page):
-    return (int(page)-1)*15
+def get_pageval(page,per_page_count):
+    return (int(page)-1)*per_page_count
 
 class TuzkiHandler(AcountHandler):
     def write_html(self, user = None, words= [],words_count = None, pager=None):
@@ -40,23 +40,36 @@ class TuzkiHandler(AcountHandler):
         if not user:
             self.redirect('/login')
         #words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).offerset((page-1)*15).limit(15).all()
-        pageval = get_pageval(page);
-        per_page_count = 15
-
-        def has_prev_page(curr_page, words_count, per_page_count):
-            return False
-
-        def has_next_page(curr_page, words_count, per_page_count):
-            return True
+        
+        per_page_count = 10
 
         words_count = web.ctx.orm.query(func.count('*')).filter(WordsBook.userid == user.userid).scalar()
+
+        all_page = words_count //per_page_count
+        if words_count % per_page_count > 0:
+            all_page = all_page +1
+        def has_prev_page(curr_page):
+            #using int()
+            if int(curr_page)>1:
+                return True
+            else:
+                return False
+
+        def has_next_page(curr_page,all_page):
+            if int(curr_page)  < all_page :
+                return True
+            else:
+                return False
+
+        pageval = get_pageval(page,per_page_count)
         
         words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).limit(per_page_count).offset(pageval).all()
 
         pager = {
             'current_page': page,
-            'has_prev_page': has_prev_page(page, words_count, per_page_count),
-            'has_next_page': has_next_page(page, words_count, per_page_count)
+            'all_page':all_page,
+            'has_prev_page': has_prev_page(page),
+            'has_next_page': has_next_page(page, all_page)
         }
         return self.write_html(user, words,words_count,pager)
 
