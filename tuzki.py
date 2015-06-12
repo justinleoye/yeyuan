@@ -99,6 +99,14 @@ class TuzkiHandler(AcountHandler):
             # code 3 means user not valided
             return json.dumps({ 'code': "3"})
 
+    def DELETE(self):
+        user = self.valid()
+        if user:
+            userwordid = web.data()
+            web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).filter(WordsBook.userwordid == userwordid).delete()
+            return json.dumps({'code': '1'})
+
+
 class TuzkiDetailHandler(AcountHandler):
     def write_html(self,user=None):
         return render.tuzki_help(user = user)
@@ -107,18 +115,6 @@ class TuzkiDetailHandler(AcountHandler):
         user=self.valid()
         return self.write_html(user)
 
-class TuzkiDeleteWordHandle(AcountHandler):
-    def write_html(self,user =None):
-        return render.tuzki_delete(user = user)
-    def GET(self):
-        user = self.valid()
-        if not user:
-            self.redirect('/login')
-
-        word = "a"
-        deleteWord =  web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).filter(WordsBook.word == word).first()
-        web.ctx.orm.delete(deleteWord)
-        return self.write_html(user)
         
 
 class TuzkiGetAcountStateHandler(AcountHandler):

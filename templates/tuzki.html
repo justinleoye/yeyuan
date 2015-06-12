@@ -8,38 +8,38 @@
             <!--<span class="alert alert-info">你好，这是你的单词本，你的单词已经存入数据库，不过，暂时单词本的管理和分析页面和功能还没有完成，请等等。</span>
             <h4><span class="label label-important">Coming soon! =^_^=</span></h4>-->
             <div class="span8">
-	    <div class="row">
-	        <p>wordsCount:{{words_count}}</p>
-	
-	
-	    </div>
-	</div>
+        <div class="row">
+            <p>wordsCount:{{words_count}}</p>
+        </div>
+    </div>
             {% for word in words %}
                 <div class="span8">
-	    <div class="row">
-	     <p>
-	        	{{ word.word }}
-	        	&nbsp
-	        	{{word.date}}
-	                <a href="/tuzki_delete"><button type="submit" class="btn btn-warning"><i class="icon-remove icon-white"></i></button></a>
-	    </p>
-	    </div>
-	</div>
+        <div class="row">
+         <p  name = "{{word.userwordid}}">
+                {{ word.word }}
+                &nbsp
+                {{word.date}}
+         
+                    <button class="btn btn-warning word-remove"><i class="icon-remove icon-white"></i></button>
+        </p>
+        </div>
+    </div>
+
             {% endfor %}
             {% if pager != None %}
             <div class="span10">
-	    <div class="row">
-	    	{% if pager.has_prev_page %}
-	                <a href="/tuzki_page/{{ (pager.current_page | int) -1 }}"><button type="submit" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>pre</button></a>
-	                {% endif %}
-	                {% if pager.has_next_page %}
-	    	<a href="/tuzki_page/{{ (pager.current_page | int) +1 }}"><button type="submit" class="btn btn-primary"><i class="icon-arrow-right icon-white"></i>next</button></a>
-	    	{% endif %}
+        <div class="row">
+            {% if pager.has_prev_page %}
+                    <a href="/tuzki_page/{{ (pager.current_page | int) -1 }}"><button type="submit" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>pre</button></a>
+                    {% endif %}
+                    {% if pager.has_next_page %}
+            <a href="/tuzki_page/{{ (pager.current_page | int) +1 }}"><button type="submit" class="btn btn-primary"><i class="icon-arrow-right icon-white"></i>next</button></a>
+            {% endif %}
 
-	    	<p>page:{{pager.current_page}}</p>
-	    	<p>all_page:{{pager.all_page}}</p>
-	        
-	    </div>
+            <p>page:{{pager.current_page}}</p>
+            <p>all_page:{{pager.all_page}}</p>
+            
+        </div>
             </div>
             {% endif %}
         </div>
@@ -49,7 +49,35 @@
 {% block javascript %}
 <script type="text/javascript">
 $(document).ready(function(){
-
+ 
+    $('.word-remove').click(function(){
+        alert('ok');
+        var myParent = $(this).parent('p');
+        var userwordid =  myParent.attr('name');
+        console.log('userword_id:', userwordid);
+            
+            if(userwordid){
+                var url = "http://localhost:8080/tuzki"
+                var xhr = new XMLHttpRequest();
+                xhr.open("DELETE", url, true);
+                
+                xhr.onreadystatechange = function() {
+                    console.log("xhr.readyState=",xhr.readyState);
+                    if(xhr.readyState == 4){
+                        //console.log(xhr.responseText);
+                        var result = JSON.parse(xhr.responseText);
+                        if(result.code == '1' ){
+                             //delete p
+                            myParent.remove();
+                        }
+                    }
+                }
+                xhr.send(userwordid);
+            }
+            return false;
+     });
+  
 })
+
 </script>
 {% endblock javascript %}
