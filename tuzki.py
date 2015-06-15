@@ -11,7 +11,7 @@ from account import AcountHandler
 from models import WordsBook
 
 from sqlalchemy import desc,distinct,or_,func
-
+from utils import url_query_parser,row2dict
 import json
 import urllib2
 import copy
@@ -126,6 +126,59 @@ class TuzkiGetAcountStateHandler(AcountHandler):
         else:
             # code 3 means user not valided
             return json.dumps({'code': '13', 'update': 'False'})
+
+
+class TuzkiAPIHandler(AcountHandler):
+
+    def GET(self):
+        user = self.valid()
+        if not user:
+            self.redirect('/login')
+        #words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).offerset((page-1)*15).limit(15).all()
+        query = web.ctx.query
+
+        args = url_query_parser(query)
+        page = int(args['page'])
+
+        per_page_count = 10
+
+        words_count = web.ctx.orm.query(func.count('*')).filter(WordsBook.userid == user.userid).scalar()
+
+        all_page = words_count //per_page_count
+        if words_count % per_page_count > 0:
+            all_page = all_page +1
+        def has_prev_page(curr_page):
+            #using int()
+            if int(curr_page)>1:
+                return True
+            else:
+                return False
+
+        def has_next_page(curr_page,all_page):
+            if int(curr_page)  < all_page :
+                return True
+            else:
+                return False
+
+        pageval = get_pageval(page,per_page_count)
+        
+        words = web.ctx.orm.query(WordsBook).filter(WordsBook.userid == user.userid).order_by(desc(WordsBook.date)).limit(per_page_count).offset(pageval).all()
+        word_list = []
+        for word in words:
+            word = row2dict(word)
+            word['date'] = time.mktime(word['date'].timetuple())
+            word_list.append(word)
+
+        pager = {
+            'current_page': page,
+            'all_page':all_page,
+            'has_prev_page': has_prev_page(page),
+            'has_next_page': has_next_page(page, all_page)
+        }
+        return json.dumps({
+            'pager':pager,
+            'words':word_list
+            })
 
 
 

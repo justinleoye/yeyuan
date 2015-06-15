@@ -13,7 +13,7 @@ from setting import load_sqla
 from account import get_user
 from models import User
 from account import AcountHandler,SignupHandler,LoginHandler,LogoutHandler,WelcomeHandler,ProfileHandler,EditProfileHandler,DelAcountHandler,get_user
-from tuzki import TuzkiHandler,TuzkiDetailHandler,TuzkiGetAcountStateHandler
+from tuzki import TuzkiHandler,TuzkiDetailHandler,TuzkiGetAcountStateHandler,TuzkiAPIHandler
 from goagent import GoagentHandler,InvitationHandler
 # the urls of the web system
 urls = (
@@ -38,7 +38,8 @@ urls = (
     '/profile','ProfileHandler',
     '/editprofile','EditProfileHandler',
     '/delacount','DelAcountHandler',
-    '/test','TestHandler'
+    '/test','TestHandler',
+    '/tuzki/words','TuzkiAPIHandler'
 )
 
 
